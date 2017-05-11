@@ -122,8 +122,7 @@
             </div>
             <div class="col-xs-12 col-sm-2">
                 <p style="padding:40px;"></p>
-                <a type="button" class="btn btn-warning btn-block"
-                   data-toggle="modal" data-target="#reserveModal">Reserve Table</a>
+                <a type="button" class="btn btn-warning btn-block" id="showReserve">Reserve Table</a>
             </div>
         </div>
     </div>
@@ -133,7 +132,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <button type="button" class="close" id="closeReserve">&times;</button>
                 <h4 class="modal-title">Reserve Table </h4>
             </div>
             <div class="modal-body">
@@ -190,6 +189,7 @@
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="button" class="btn btn-default" id="cancelReserve">Cancel</button>
                         </div>
                     </div>
                     <div class="alert alert-warning alert-dismissable" role="alert">
@@ -435,6 +435,15 @@
         });
         $("#carousel-play").click(function () {
             $("#mycarousel").carousel('cycle');
+        });
+        $("#showReserve").click(function () {
+            $("#reserveModal").modal("show");
+        });
+        $("#closeReserve").click(function () {
+            $("#reserveModal").modal("hide");
+        });
+        $("#cancelReserve").click(function () {
+            $("#reserveModal").modal("hide");
         });
     });
 </script>
