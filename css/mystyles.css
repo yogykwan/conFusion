@@ -1,95 +1,96 @@
 .row-header {
-    margin: 0 auto;
-    padding: 0 auto;
+  margin: 0 auto;
+  padding: 0px 0px;
 }
-
 .row-content {
-    margin: 0 auto;
-    padding: 50px 0 50px 0;
-    border-bottom: 1px ridge;
-    min-height: 400px;
+  margin: 0 auto;
+  padding: 50px 0px;
+  border-bottom: 1px ridge;
+  min-height: 400px;
 }
-
 .row-footer {
-    background-color: #AfAfAf;
-    margin: 0 auto;
-    padding: 20px 0 20px 0;
+  margin: 0 auto;
+  padding: 20px 0px;
+  background-color: #afafaf;
 }
-
 .jumbotron {
-    padding: 70px 30px 70px 30px;
-    margin: 0 auto;
-    background: #7986CB;
-    color: floralwhite;
+  margin: 0 auto;
+  padding: 70px 30px;
+  background: #7986cb;
+  color: floralwhite;
 }
-
-address {
-    font-size: 80%;
-    margin: 0;
-    color: #0f0f0f;
-}
-
-body {
-    padding: 50px 0 0 0;
-    z-index: 0;
-}
-
-.navbar-inverse {
-    background: #303F9F;
-}
-
-.navbar-inverse .navbar-nav > .active > a,
-.navbar-inverse .navbar-nav > .active > a:hover,
-.navbar-inverse .navbar-nav > .active > a:focus {
-    color: #fff;
-    background: #1A237E;
-}
-
-.navbar-inverse .navbar-nav > .open > a,
-.navbar-inverse .navbar-nav > .open > a:hover,
-.navbar-inverse .navbar-nav > .open > a:focus {
-    color: #fff;
-    background: #1A237E;
-}
-
-.navbar-inverse .navbar-nav .open .dropdown-menu > li > a,
-.navbar-inverse .navbar-nav .open .dropdown-menu {
-    background-color: #303F9F;
-    color: #eeeeee;
-}
-
-.navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover {
-    color: #000000;
-}
-
-.tab-content {
-    border-left: 1px solid #ddd;
-    border-right: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-    padding: 10px;
-}
-
-.affix {
-    top: 100px;
-}
-
 .carousel {
-    background: #1A237E;
+  background: #1a237e;
 }
-
 .carousel .item {
-    height: 300px;
+  height: 300px;
 }
-
-.item img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    min-height: 300px;
+.carousel .item img {
+  left: 0;
+  min-height: 300px;
+  position: absolute;
+  top: 0;
 }
-
+.navbar-inverse {
+  background: #303f9f;
+  color: #ffffff;
+}
+.navbar-inverse .navbar-nav > .active > a {
+  background: #1a237e;
+  color: #ffffff;
+}
+.navbar-inverse .navbar-nav > .active > a:hover {
+  background: #1a237e;
+  color: #ffffff;
+}
+.navbar-inverse .navbar-nav > .active > a:focus {
+  background: #1a237e;
+  color: #ffffff;
+}
+.navbar-inverse .navbar-nav > .open > a {
+  background: #1a237e;
+  color: #ffffff;
+}
+.navbar-inverse .navbar-nav > .open > a:hover {
+  background: #1a237e;
+  color: #ffffff;
+}
+.navbar-inverse .navbar-nav > .open > a:focus {
+  background: #1a237e;
+  color: #ffffff;
+}
+.navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
+  background-color: #303f9f;
+  color: #eeeeee;
+}
+.navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover {
+  color: #000000;
+}
+.navbar-inverse .navbar-nav .open .dropdown-menu {
+  background-color: #303f9f;
+  color: #eeeeee;
+}
+address {
+  color: #0f0f0f;
+  font-size: 80%;
+  margin: 0;
+}
+body {
+  align: center;
+  padding: 50px 0 0 0;
+  z-index: 0;
+}
+.tab-content {
+  border-bottom: 1px solid #dddddd;
+  border-left: 1px solid #dddddd;
+  border-right: 1px solid #dddddd;
+  padding: 10px;
+}
+.affix {
+  top: 100px;
+}
 #carouselButtons {
-    right: 0;
-    position: absolute;
-    bottom: 0;
+  bottom: 0;
+  position: absolute;
+  right: 0;
 }
