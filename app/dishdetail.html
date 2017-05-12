@@ -26,8 +26,8 @@
 <body>
 
 <div class="container">
-    <div class="row row-content" ng-controller="dishDetailController as dishCtrl">
-        <div class="col-xs-12" ng-init="dish=dishCtrl.dish">
+    <div class="row row-content" ng-controller="DishDetailController">
+        <div class="col-xs-12">
             <div class="media">
                 <div class="media-left media-middle">
                     <a href="#">
@@ -43,82 +43,92 @@
                 </div>
             </div>
         </div>
-        <div class="col-xs-9 col-xs-offset-1">
+        <div class="col-xs-11 col-xs-offset-1" ng-controller="DishCommentController">
             <h4>Customer Comments
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <small>Sort by: <input type="text" ng-model="dishCtrl.orderText"></small>
+                <small>Sort by: <input type="text" ng-model="orderText"></small>
             </h4>
 
             <ul>
                 <li class="list-unstyled"
-                    ng-repeat="comment in dishCtrl.dish.comments | orderBy:dishCtrl.orderText">
+                    ng-repeat="comment in dish.comments | orderBy:orderText">
                     <blockquote>
                         <h4>{{comment.rating}} Stars</h4>
                         <p>{{comment.comment}}</p>
                         <footer>{{comment.author}}, {{comment.date | date: "MMM, d, y"}}</footer>
                     </blockquote>
                 </li>
+                <li class="list-unstyled" ng-show="!dishCommentForm.$pristine">
+                    <blockquote>
+                        <h4>{{dishComment.rating}} Stars</h4>
+                        <p>{{dishComment.comment}}</p>
+                        <footer>{{dishComment.author}}, {{dishComment.date | date: "MMM, d, y"}}</footer>
+                    </blockquote>
+                </li>
             </ul>
+            <form class="form-horizontal" role="form" name="dishCommentForm" ng-submit="submitComment()" novalidate>
+                <div class="form-group"
+                     ng-class="{ 'has-error' : dishCommentForm.author.$error.required && !dishCommentForm.author.$pristine}">
+                    <label for="author" class="col-sm-2 control-label">Your Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="author" name="author"
+                               placeholder="Enter Your Name"
+                               ng-model="dishComment.author" required>
+                        <span ng-show="dishCommentForm.author.$error.required && !dishCommentForm.author.$pristine"
+                              class="help-block">Your name is required.</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Number of Stars</label>
+                    <div class="col-sm-10">
+                        <div class="radio-inline">
+                            <label><input type="radio" name="rating" value="1"
+                                          ng-model="dishComment.rating">1</label>
+                        </div>
+                        <div class="radio-inline">
+                            <label><input type="radio" name="rating" value="2"
+                                          ng-model="dishComment.rating">2</label>
+                        </div>
+                        <div class="radio-inline">
+                            <label><input type="radio" name="rating" value="3"
+                                          ng-model="dishComment.rating">3</label>
+                        </div>
+                        <div class="radio-inline">
+                            <label><input type="radio" name="rating" value="4"
+                                          ng-model="dishComment.rating">4</label>
+                        </div>
+                        <div class="radio-inline">
+                            <label><input type="radio" name="rating" value="5"
+                                          ng-model="dishComment.rating" ng-checked="1">5</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group"
+                     ng-class="{ 'has-error' : dishCommentForm.comment.$error.required && !dishCommentForm.comment.$pristine }">
+                    <label for="comment" class="col-sm-2 control-label">Your Comment</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" id="comment" name="comment" rows="12"
+                                  ng-model="dishComment.comment" required></textarea>
+                        <span ng-show="dishCommentForm.comment.$error.required && !dishCommentForm.comment.$pristine"
+                              class="help-block">Comment is required.</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary" ng-disabled="dishCommentForm.$invalid">
+                            Submit Comment
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
+
     </div>
 
 </div>
 
 <script src="../bower_components/angular/angular.min.js"></script>
-<script>
-
-    var app = angular.module('confusionApp', []);
-
-    app.controller('dishDetailController', function () {
-        this.orderText = '';
-
-        var dish = {
-            name: 'Uthapizza',
-            image: 'images/uthapizza.png',
-            category: 'mains',
-            label: 'Hot',
-            price: '4.99',
-            description: 'A unique combination of Indian Uthappam (pancake) and Italian pizza, topped with Cerignola olives, ripe vine cherry tomatoes, Vidalia onion, Guntur chillies and Buffalo Paneer.',
-            comments: [
-                {
-                    rating: 5,
-                    comment: "Imagine all the eatables, living in conFusion!",
-                    author: "John Lemon",
-                    date: "2012-10-16T17:57:28.556094Z"
-                },
-                {
-                    rating: 4,
-                    comment: "Sends anyone to heaven, I wish I could get my mother-in-law to eat it!",
-                    author: "Paul McVites",
-                    date: "2014-09-05T17:57:28.556094Z"
-                },
-                {
-                    rating: 3,
-                    comment: "Eat it, just eat it!",
-                    author: "Michael Jaikishan",
-                    date: "2015-02-13T17:57:28.556094Z"
-                },
-                {
-                    rating: 4,
-                    comment: "Ultimate, Reaching for the stars!",
-                    author: "Ringo Starry",
-                    date: "2013-12-02T17:57:28.556094Z"
-                },
-                {
-                    rating: 2,
-                    comment: "It's your birthday, we're gonna party!",
-                    author: "25 Cent",
-                    date: "2011-12-02T17:57:28.556094Z"
-                }
-
-            ]
-        };
-
-        this.dish = dish;
-
-    });
-
-</script>
+<script src="scripts/app.js"></script>
 
 </body>
 
