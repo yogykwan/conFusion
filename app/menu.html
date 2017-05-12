@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app>
+<html lang="en" ng-app="confusionApp">
 
 <head>
     <meta charset="utf-8">
@@ -26,49 +26,10 @@
 <body>
 
 <div class="container">
-    <div class="row row-content"
-         ng-init="
-             dishes=[
-             {
-               name:'Uthapizza',
-               image: 'images/uthapizza.png',
-               category: 'mains',
-               label:'Hot',
-               price:'4.99',
-               description:'A unique combination of Indian Uthappam (pancake) and Italian pizza, topped with Cerignola olives, ripe vine cherry tomatoes, Vidalia onion, Guntur chillies and Buffalo Paneer.',
-               comment: ''
-            },
-            {
-               name:'Zucchipakoda',
-               image: 'images/zucchipakoda.png',
-               category: 'appetizer',
-               label:'',
-               price:'1.99',
-               description:'Deep fried Zucchini coated with mildly spiced Chickpea flour batter accompanied with a sweet-tangy tamarind sauce',
-               comment: ''
-            },
-            {
-               name:'Vadonut',
-               image: 'images/vadonut.png',
-               category: 'appetizer',
-               label:'New',
-               price:'1.99',
-               description:'A quintessential ConFusion experience, is it a vada or is it a donut?',
-               comment: ''
-            },
-            {
-               name:'ElaiCheese Cake',
-               image: 'images/elaicheesecake.png',
-               category: 'dessert',
-               label:'',
-               price:'2.99',
-               description:'A delectable, semi-sweet New York Style Cheese Cake, with Graham cracker crust and spiced with Indian cardamoms',
-               comment: ''
-            }
-            ]">
+    <div class="row row-content" ng-controller="menuController as menuCtrl">
         <div class="col-xs-12">
             <div class="media-list">
-                <div class="media" ng-repeat="dish in dishes">
+                <div class="media" ng-repeat="dish in menuCtrl.dishes">
                     <div class="media-left media-middle">
                         <a href="#">
                             <img class="media-object img-thumbnail"
@@ -91,6 +52,52 @@
 </div>
 
 <script src="../bower_components/angular/angular.min.js"></script>
+
+<script>
+    var app = angular.module('confusionApp', []);
+    app.controller('menuController', function () {
+        var dishes = [
+            {
+                name: 'Uthapizza',
+                image: 'images/uthapizza.png',
+                category: 'mains',
+                label: 'Hot',
+                price: '4.99',
+                description: 'A unique combination of Indian Uthappam (pancake) and Italian pizza, topped with Cerignola olives, ripe vine cherry tomatoes, Vidalia onion, Guntur chillies and Buffalo Paneer.',
+                comment: ''
+            },
+            {
+                name: 'Zucchipakoda',
+                image: 'images/zucchipakoda.png',
+                category: 'appetizer',
+                label: '',
+                price: '1.99',
+                description: 'Deep fried Zucchini coated with mildly spiced Chickpea flour batter accompanied with a sweet-tangy tamarind sauce',
+                comment: ''
+            },
+            {
+                name: 'Vadonut',
+                image: 'images/vadonut.png',
+                category: 'appetizer',
+                label: 'New',
+                price: '1.99',
+                description: 'A quintessential ConFusion experience, is it a vada or is it a donut?',
+                comment: ''
+            },
+            {
+                name: 'ElaiCheese Cake',
+                image: 'images/elaicheesecake.png',
+                category: 'dessert',
+                label: '',
+                price: '2.99',
+                description: 'A delectable, semi-sweet New York Style Cheese Cake, with Graham cracker crust and spiced with Indian cardamoms',
+                comment: ''
+            }
+        ];
+        this.dishes = dishes;
+    });
+</script>
+
 </body>
 
 </html>
