@@ -67,19 +67,17 @@ angular.module('confusionApp')
         };
     }])
 
-    .controller('DishDetailController', ['$scope', '$stateParams', 'menuFactory',
-        function ($scope, $stateParams, menuFactory) {
+    .controller('DishDetailController', ['$scope', '$stateParams', 'menuFactory', function ($scope, $stateParams, menuFactory) {
 
-            $scope.orderText = '';
+        $scope.orderText = '';
 
-            var dish = menuFactory.getDish(parseInt($stateParams.id, 10));
-            $scope.dish = dish;
+        var dish = menuFactory.getDish(parseInt($stateParams.id, 10));
+        $scope.dish = dish;
 
-        }])
+    }])
 
     .controller('DishCommentController', ['$scope', function ($scope) {
 
-        //Step 1: Create a JavaScript object to hold the comment from the form
         $scope.dishComment = {
             author: "", rating: 5, comment: "", date: ""
         };
@@ -96,4 +94,13 @@ angular.module('confusionApp')
         }
     }])
 
+    .controller('IndexController', ['$scope', 'menuFactory', 'corporateFactory', function ($scope, menuFactory, corporateFactory) {
+        $scope.dish = menuFactory.getDish(0);
+        $scope.promotion = menuFactory.getPromotion(0);
+        $scope.leader = corporateFactory.getLeader(0);
+    }])
+
+    .controller('AboutController', ['$scope', 'corporateFactory', function ($scope, corporateFactory) {
+        $scope.leaders = corporateFactory.getLeaders();
+    }])
 ;
