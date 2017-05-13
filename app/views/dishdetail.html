@@ -1,6 +1,10 @@
 <div class="container">
     <div class="row row-content" ng-controller="DishDetailController">
         <div class="col-xs-12">
+            <button class="btn btn-xs btn-primary pull-right"
+                    type="button" ui-sref="app.menu">
+                Back to Menu
+            </button>
             <div class="media">
                 <div class="media-left media-middle">
                     <a href="#">
@@ -16,7 +20,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xs-11 col-xs-offset-1" ng-controller="DishCommentController">
+        <div class="col-xs-9 col-xs-offset-1" ng-controller="DishCommentController">
             <h4>Customer Comments
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <small>Sort by: <input type="text" ng-model="orderText"></small>
