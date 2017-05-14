@@ -59,7 +59,7 @@ angular.module('confusionApp')
 
     }])
 
-    .controller('FeedbackController', ['$scope', function ($scope) {
+    .controller('FeedbackController', ['$scope', 'feedbackFactory', function ($scope, feedbackFactory) {
         $scope.sendFeedback = function () {
 
             console.log($scope.feedback);
@@ -69,6 +69,8 @@ angular.module('confusionApp')
                 console.log('incorrect');
             }
             else {
+                feedbackFactory.getFeedback().save($scope.feedback);
+
                 $scope.invalidChannelSelection = false;
                 $scope.feedback = {mychannel: "", firstName: "", lastName: "", agree: false, email: ""};
                 $scope.feedback.mychannel = "";
@@ -133,11 +135,13 @@ angular.module('confusionApp')
                 }
             );
 
-        $scope.promotion = menuFactory.getPromotion(0);
-        $scope.leader = corporateFactory.getLeader(0);
+        $scope.promotion = menuFactory.getPromotions().get({id: 0});
+
+        $scope.leader = corporateFactory.getLeaders().get({id: 0});
+
     }])
 
     .controller('AboutController', ['$scope', 'corporateFactory', function ($scope, corporateFactory) {
-        $scope.leaders = corporateFactory.getLeaders();
+        $scope.leaders = corporateFactory.getLeaders().query();
     }])
 ;
