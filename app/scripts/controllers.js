@@ -85,7 +85,7 @@ angular.module('confusionApp')
         $scope.showDish = false;
         $scope.message = "Loading ...";
 
-        $scope.dish = $scope.dish = menuFactory.getDishes().get({id: parseInt($stateParams.id, 10)})
+        $scope.dish = menuFactory.getDishes().get({id: parseInt($stateParams.id, 10)})
             .$promise.then(
                 function (response) {
                     $scope.dish = response;
@@ -122,10 +122,10 @@ angular.module('confusionApp')
         $scope.showDish = false;
         $scope.message = "Loading ...";
 
-        $scope.dish = menuFactory.getDishes.get({id: 0})
+        $scope.dish = menuFactory.getDishes().get({id: 0})
             .$promise.then(
                 function (response) {
-                    $scope.dish = response.data;
+                    $scope.dish = response;
                     $scope.showDish = true;
                 },
                 function (response) {

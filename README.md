@@ -16,3 +16,36 @@ npm install jshint gulp-jshint jshint-stylish gulp-imagemin gulp-concat gulp-ugl
 gulp
 gulp watch
 ```
+
+# Server
+
+```
+npm install json-server -g
+
+cd json-server
+json-server --watch db.json
+```
+
+# Unit Test
+
+```
+npm install jasmine-core --save-dev
+npm install karma-cli -g
+npm install karma-jasmine --save-dev
+npm install phantomjs karma-phantomjs-launcher karma-chrome-launcher --save-dev
+
+cd test
+karma start karma.conf.js
+```
+
+# E2E Test
+
+```
+npm install protractor -g
+webdriver-manager update
+
+gulp watch
+cd test
+protractor protractor.conf.js
+
+```
