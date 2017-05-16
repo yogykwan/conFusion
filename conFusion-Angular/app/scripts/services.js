@@ -11,7 +11,7 @@ angular.module('confusionApp')
         };
 
         this.getPromotions = function () {
-            return $resource(baseURL + "promotions/:id", null);
+            return $resource(baseURL + "promotions/:id");
         };
 
     }])
@@ -21,7 +21,7 @@ angular.module('confusionApp')
         var corpfac = {};
 
         corpfac.getLeaders = function () {
-            return $resource(baseURL + "leadership/:id", null);
+            return $resource(baseURL + "leadership/:id");
         };
 
         return corpfac;
@@ -31,7 +31,7 @@ angular.module('confusionApp')
     .service('feedbackFactory', ['$resource', 'baseURL', function ($resource, baseURL) {
 
         this.getFeedback = function () {
-            return $resource(baseURL + "feedback/:id", null, {'update': {method: 'PUT'}});
+            return $resource(baseURL + "feedback/:id");
         };
 
     }])

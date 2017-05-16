@@ -1,5 +1,32 @@
-<ion-view view-title="Playlist">
+<ion-view view-title="Dish Details">
   <ion-content>
-    <h1>Playlist</h1>
+    <div class="card">
+      <div class="item item-body item-text-wrap">
+        <img class="full-image" ng-src="{{baseURL+dish.image}}" alt="{{dish.name}}">
+        <h2>{{dish.name}}
+          <span style="font-size:75%">{{dish.price | currency}}</span>
+          <span class="badge badge-assertive">{{dish.label}}</span></h2>
+        <p>{{dish.description}}</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col col-offset-10">
+        <h4>Customer Comments &nbsp;&nbsp;&nbsp;
+          <small>Sort by: &nbsp;
+            <input type="text" ng-model="orderText">
+          </small>
+        </h4>
+        <ul class="list">
+          <li ng-repeat="comment in dish.comments | orderBy:orderText">
+            <blockquote>
+              <p>{{comment.rating}} Stars</p>
+              <p>{{comment.comment}}</p>
+              <footer>{{comment.author}}, {{comment.date | date:'MMM. dd, yyyy'}}</footer>
+            </blockquote>
+          </li>
+        </ul>
+      </div>
+    </div>
   </ion-content>
 </ion-view>

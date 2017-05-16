@@ -116,7 +116,7 @@ angular.module('confusionApp')
             $scope.dishCommentForm.$setPristine();
             $scope.dishComment = {author: "", rating: 5, comment: "", date: ""};
 
-        }
+        };
     }])
 
     .controller('IndexController', ['$scope', 'menuFactory', 'corporateFactory', function ($scope, menuFactory, corporateFactory) {
