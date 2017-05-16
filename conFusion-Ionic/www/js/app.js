@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('conFusion', ['ionic', 'conFusion.controllers', 'conFusion.services'])
+angular.module('conFusion', ['ionic', 'conFusion.controllers', 'conFusion.services', 'conFusion.filters'])
 
   .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
@@ -79,7 +79,18 @@ angular.module('conFusion', ['ionic', 'conFusion.controllers', 'conFusion.servic
             controller: 'DishDetailController'
           }
         }
-      });
+      })
+
+      .state('app.favorites', {
+        url: '/favorites',
+        views: {
+          'mainContent': {
+            templateUrl: 'templates/favorites.html',
+            controller: 'FavoritesController'
+          }
+        }
+      })
+    ;
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/app/home');
   });
