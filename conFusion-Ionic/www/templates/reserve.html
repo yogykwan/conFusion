@@ -1,0 +1,46 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Reserve Table</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeReserve()">Close</button>
+    </div>
+  </ion-header-bar>
+
+  <ion-content>
+    <form ng-submit="doReserve()">
+      <div class="list">
+        <label class="item item-input item-select">
+          <span class="input-label">Number of Guests</span>
+          <select ng-model="reservation.numGuests">
+            <option ng-repeat="n in [1,2,3,4,5,6]" value="{{n}}">{{n}}</option>
+          </select>
+        </label>
+
+        <li class="item item-toggle">
+          Smoking?
+          <label class="toggle toggle-assertive">
+            <input type="checkbox" ng-model="reservation.smoking">
+            <div class="track">
+              <div class="handle">
+              </div>
+            </div>
+          </label>
+        </li>
+
+        <label class="item item-input">
+          <span class="input-label">Date</span>
+          <input type="date" ng-model="reservation.date">
+        </label>
+
+        <label class="item item-input">
+          <span class="input-label">Time</span>
+          <input type="time" ng-model="reservation.time" name="reservetime" min="11:00:00" max="21:00:00">
+        </label>
+
+        <label class="item">
+          <button class="button button-block button-positive" type="submit">Reserve</button>
+        </label>
+      </div>
+    </form>
+  </ion-content>
+</ion-modal-view>
