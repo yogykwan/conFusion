@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('conFusion', ['ionic', 'conFusion.controllers', 'conFusion.services', 'conFusion.filters'])
 
-  .run(function ($ionicPlatform) {
+  .run(function ($ionicPlatform, $rootScope, $ionicLoading) {
     $ionicPlatform.ready(function () {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
@@ -19,6 +19,26 @@ angular.module('conFusion', ['ionic', 'conFusion.controllers', 'conFusion.servic
         // org.apache.cordova.statusbar required
         StatusBar.styleDefault();
       }
+    });
+
+    $rootScope.$on('loading:show', function () {
+      $ionicLoading.show({
+        template: '<ion-spinner></ion-spinner> Loading ...'
+      });
+    });
+
+    $rootScope.$on('loading:hide', function () {
+      $ionicLoading.hide();
+    });
+
+    $rootScope.$on('$stateChangeStart', function () {
+      console.log('Loading ...');
+      $rootScope.$broadcast('loading:show');
+    });
+
+    $rootScope.$on('$stateChangeSuccess', function () {
+      console.log('done');
+      $rootScope.$broadcast('loading:hide');
     });
   })
 
@@ -78,6 +98,11 @@ angular.module('conFusion', ['ionic', 'conFusion.controllers', 'conFusion.servic
             templateUrl: 'templates/dishdetail.html',
             controller: 'DishDetailController'
           }
+        },
+        resolve: {
+          dish: ['$stateParams', 'menuFactory', function ($stateParams, menuFactory) {
+            return menuFactory.get({id: parseInt($stateParams.id, 10)});
+          }]
         }
       })
 
@@ -88,6 +113,14 @@ angular.module('conFusion', ['ionic', 'conFusion.controllers', 'conFusion.servic
             templateUrl: 'templates/favorites.html',
             controller: 'FavoritesController'
           }
+        },
+        resolve: {
+          dishes: ['menuFactory', function (menuFactory) {
+            return menuFactory.query();
+          }],
+          favorites: ['favoriteFactory', function (favoriteFactory) {
+            return favoriteFactory.getFavorites();
+          }]
         }
       })
     ;
