@@ -34,7 +34,7 @@ angular.module('conFusion.services', ['ngResource'])
 
     favFac.addToFavorites = function (index) {
       for (var i = 0; i < favorites.length; i++) {
-        if (favorites[i].id == index) {
+        if (favorites[i].id === index) {
           return;
         }
       }
@@ -43,7 +43,7 @@ angular.module('conFusion.services', ['ngResource'])
 
     favFac.deleteFromFavorites = function (index) {
       for (var i = 0; i < favorites.length; i++) {
-        if (favorites[i].id == index) {
+        if (favorites[i].id === index) {
           favorites.splice(i, 1);
         }
       }
