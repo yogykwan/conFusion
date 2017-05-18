@@ -25,6 +25,11 @@ ionic serve --lab
 .constant("baseURL", "http://<Database's IP Address>:3000/")
 ```
 
+## Get Responsive Resources
+```
+ionic cordova resources
+```
+
 ## IOS
 
 ```
