@@ -30,6 +30,12 @@ ionic serve --lab
 ionic cordova resources
 ```
 
+## Add Ionic Plugins
+```
+ionic cordova plugin add de.appplant.cordova.plugin.local-notification
+ionic cordova plugin add https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git
+```
+
 ## IOS
 
 ```
