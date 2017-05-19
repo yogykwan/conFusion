@@ -34,6 +34,9 @@ ionic cordova resources
 ```
 ionic cordova plugin add de.appplant.cordova.plugin.local-notification
 ionic cordova plugin add https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git
+ionic cordova plugin add cordova-plugin-camera
+ionic cordova plugin add cordova-plugin-image-picker
+ionic cordova plugin add cordova-plugin-vibration
 ```
 
 ## IOS

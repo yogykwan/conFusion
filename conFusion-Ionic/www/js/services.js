@@ -43,7 +43,7 @@ angular.module('conFusion.services', ['ngResource'])
     };
 
     favFac.getFavorites = function () {
-      favorites = $localStorage.getObject('favorites');
+      favorites = $localStorage.getObject('favorites', '[]');
       return favorites;
     };
 
