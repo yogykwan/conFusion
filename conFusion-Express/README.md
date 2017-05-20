@@ -12,3 +12,11 @@ npm install
 npm start
 ```
 
+# MongoDB
+```
+brew update && brew install mongodb
+
+mongodb --dbpath=data
+
+mongo
+```
