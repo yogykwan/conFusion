@@ -1,9 +1,7 @@
 var express = require('express');
-var bodyParser = require('body-parser');
 
 var promoRouter = express.Router();
 
-promoRouter.use(bodyParser.json());
 
 promoRouter.route('/')
     .all(function (req, res, next) {

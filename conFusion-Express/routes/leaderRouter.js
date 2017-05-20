@@ -1,9 +1,7 @@
 var express = require('express');
-var bodyParser = require('body-parser');
 
 var leaderRouter = express.Router();
 
-leaderRouter.use(bodyParser.json());
 
 leaderRouter.route('/')
     .all(function (req, res, next) {
