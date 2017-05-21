@@ -16,6 +16,9 @@ db.once('open', function () {
     Dishes.create({
         name: 'Uthapizza',
         description: 'Test',
+        image: 'images/uthapizza.png',
+        category: 'mains',
+        price: '4.99',
         comments: [
             {
                 rating: 3,
