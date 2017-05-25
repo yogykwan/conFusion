@@ -11,11 +11,13 @@
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
     "express": "~4.15.2",
+    "express-session": "~1.15.3",
     "jade": "~1.11.0",
     "mongodb": "~2.2.26",
     "mongoose": "~4.10.0",
     "mongoose-currency": "~0.2.0",
     "morgan": "~1.8.1",
-    "serve-favicon": "~2.4.2"
+    "serve-favicon": "~2.4.2",
+    "session-file-store": "~1.0.0"
   }
 }
