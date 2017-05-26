@@ -10,7 +10,7 @@ brew update && brew install mongodb
 mongod --dpath=data
 ```
 
-## Command Line
+## Access Database
 ```
 mongo
 ```

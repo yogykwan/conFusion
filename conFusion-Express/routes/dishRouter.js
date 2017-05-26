@@ -9,14 +9,16 @@ var dishRouter = express.Router();
 dishRouter.use(bodyParser.json());
 
 dishRouter.route('/')
-    .get(Verify.verifyOrdinaryUser, function (req, res, next) {
+    .all(Verify.verifyOrdinaryUser)
+
+    .get(function (req, res, next) {
         Dishes.find({}, function (err, dish) {
             if (err) throw err;
             res.json(dish);
         });
     })
 
-    .post(Verify.verifyOrdinaryUser, function (req, res, next) {
+    .post(Verify.verifyAdmin, function (req, res, next) {
         Dishes.create(req.body, function (err, dish) {
             if (err) throw err;
             console.log('Dish created!');
@@ -29,7 +31,7 @@ dishRouter.route('/')
         });
     })
 
-    .delete(Verify.verifyOrdinaryUser, function (req, res, next) {
+    .delete(Verify.verifyAdmin, function (req, res, next) {
         Dishes.remove({}, function (err, resp) {
             if (err) throw err;
             res.json(resp);

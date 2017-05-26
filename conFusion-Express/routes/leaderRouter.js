@@ -3,11 +3,14 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
 var Leaders = require('../models/leaders');
+var Verify = require('./verify');
 
 var leaderRouter = express.Router();
 leaderRouter.use(bodyParser.json());
 
 leaderRouter.route('/')
+    .all(Verify.verifyOrdinaryUser)
+
     .get(function (req, res, next) {
         Leaders.find({}, function (err, leader) {
             if (err) throw err;
@@ -15,7 +18,7 @@ leaderRouter.route('/')
         });
     })
 
-    .post(function (req, res, next) {
+    .post(Verify.verifyAdmin, function (req, res, next) {
         Leaders.create(req.body, function (err, leader) {
             if (err) throw err;
             console.log('Leader created!');
@@ -28,7 +31,7 @@ leaderRouter.route('/')
         });
     })
 
-    .delete(function (req, res, next) {
+    .delete(Verify.verifyAdmin, function (req, res, next) {
         Leaders.remove({}, function (err, resp) {
             if (err) throw err;
             res.json(resp);
