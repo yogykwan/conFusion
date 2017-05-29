@@ -9,18 +9,16 @@ var promoRouter = express.Router();
 promoRouter.use(bodyParser.json());
 
 promoRouter.route('/')
-    .all(Verify.verifyOrdinaryUser)
-
     .get(function (req, res, next) {
-        Promotions.find({}, function (err, promotion) {
-            if (err) throw err;
+        Promotions.find(req.query, function (err, promotion) {
+            if (err) return next(err);
             res.json(promotion);
         });
     })
 
-    .post(Verify.verifyAdmin, function (req, res, next) {
+    .post(Verify.verifyOrdinaryUser, Verify.verifyAdmin, function (req, res, next) {
         Promotions.create(req.body, function (err, promotion) {
-            if (err) throw err;
+            if (err) return next(err);
             console.log('Promotion created!');
             var id = promotion._id;
 
@@ -31,9 +29,9 @@ promoRouter.route('/')
         });
     })
 
-    .delete(Verify.verifyAdmin, function (req, res, next) {
+    .delete(Verify.verifyOrdinaryUser, Verify.verifyAdmin, function (req, res, next) {
         Promotions.remove({}, function (err, resp) {
-            if (err) throw err;
+            if (err) return next(err);
             res.json(resp);
         });
     });
@@ -41,25 +39,25 @@ promoRouter.route('/')
 promoRouter.route('/:promotionId')
     .get(function (req, res, next) {
         Promotions.findById(req.params.promotionId, function (err, promotion) {
-            if (err) throw err;
+            if (err) return next(err);
             res.json(promotion);
         });
     })
 
-    .put(function (req, res, next) {
+    .put(Verify.verifyOrdinaryUser, Verify.verifyAdmin, function (req, res, next) {
         Promotions.findByIdAndUpdate(req.params.promotionId, {
             $set: req.body
         }, {
             new: true
         }, function (err, promotion) {
-            if (err) throw err;
+            if (err) return next(err);
             res.json(promotion);
         });
     })
 
-    .delete(function (req, res, next) {
+    .delete(Verify.verifyOrdinaryUser, Verify.verifyAdmin, function (req, res, next) {
         Promotions.findByIdAndRemove(req.params.promotionId, function (err, resp) {
-            if (err) throw err;
+            if (err) return next(err);
             res.json(resp);
         });
     });

@@ -9,18 +9,16 @@ var leaderRouter = express.Router();
 leaderRouter.use(bodyParser.json());
 
 leaderRouter.route('/')
-    .all(Verify.verifyOrdinaryUser)
-
     .get(function (req, res, next) {
-        Leaders.find({}, function (err, leader) {
-            if (err) throw err;
+        Leaders.find(req.query, function (err, leader) {
+            if (err) return next(err);
             res.json(leader);
         });
     })
 
-    .post(Verify.verifyAdmin, function (req, res, next) {
+    .post(Verify.verifyOrdinaryUser, Verify.verifyAdmin, function (req, res, next) {
         Leaders.create(req.body, function (err, leader) {
-            if (err) throw err;
+            if (err) return next(err);
             console.log('Leader created!');
             var id = leader._id;
 
@@ -31,9 +29,9 @@ leaderRouter.route('/')
         });
     })
 
-    .delete(Verify.verifyAdmin, function (req, res, next) {
+    .delete(Verify.verifyOrdinaryUser, Verify.verifyAdmin, function (req, res, next) {
         Leaders.remove({}, function (err, resp) {
-            if (err) throw err;
+            if (err) return next(err);
             res.json(resp);
         });
     });
@@ -41,25 +39,25 @@ leaderRouter.route('/')
 leaderRouter.route('/:leaderId')
     .get(function (req, res, next) {
         Leaders.findById(req.params.leaderId, function (err, leader) {
-            if (err) throw err;
+            if (err) return next(err);
             res.json(leader);
         });
     })
 
-    .put(function (req, res, next) {
+    .put(Verify.verifyOrdinaryUser, Verify.verifyAdmin, function (req, res, next) {
         Leaders.findByIdAndUpdate(req.params.leaderId, {
             $set: req.body
         }, {
             new: true
         }, function (err, leader) {
-            if (err) throw err;
+            if (err) return next(err);
             res.json(leader);
         });
     })
 
-    .delete(function (req, res, next) {
+    .delete(Verify.verifyOrdinaryUser, Verify.verifyAdmin, function (req, res, next) {
         Leaders.findByIdAndRemove(req.params.leaderId, function (err, resp) {
-            if (err) throw err;
+            if (err) return next(err);
             res.json(resp);
         });
     });

@@ -51,7 +51,7 @@ router.post('/login', function (req, res, next) {
                 });
             }
 
-            var token = Verify.getToken(user);
+            var token = Verify.getToken({"username": user.username, "_id": user._id, "admin": user.admin});
             res.status(200).json({
                 status: 'Login successful!',
                 success: true,
@@ -88,7 +88,7 @@ router.get('/github/callback', function (req, res, next) {
                     err: 'Could not log in user'
                 });
             }
-            var token = Verify.getToken(user);
+            var token = Verify.getToken({"username": user.username, "_id": user._id, "admin": user.admin});
             res.status(200).json({
                 status: 'Login successful!',
                 success: true,

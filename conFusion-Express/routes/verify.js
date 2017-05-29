@@ -36,11 +36,11 @@ exports.verifyOrdinaryUser = function (req, res, next) {
 };
 
 exports.verifyAdmin = function (req, res, next) {
-    if (req.decoded._doc.admin === true) {
-        next();
-    } else {
+    if (!req.decoded || !req.decoded.admin) {
         var err = new Error('You are not authorized to perform this operation!');
         err.status = 403;
         return next(err);
+    } else {
+        next();
     }
 };
