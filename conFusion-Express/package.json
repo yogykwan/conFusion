@@ -19,6 +19,7 @@
     "mongoose-currency": "~0.2.0",
     "morgan": "~1.8.1",
     "passport": "~0.3.2",
+    "passport-github": "~1.1.0",
     "passport-local": "~1.0.0",
     "passport-local-mongoose": "~4.0.0",
     "serve-favicon": "~2.4.2",
