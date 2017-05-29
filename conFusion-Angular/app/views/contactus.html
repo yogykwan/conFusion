@@ -45,7 +45,7 @@
         <div class="col-xs-12">
             <h3>Send us your Feedback</h3>
         </div>
-        <div class="col-xs-12 col-sm-9" ng-controller="FeedbackController">
+        <div class="col-xs-12 col-sm-9">
             <form class="form-horizontal" role="form" name="feedbackForm" ng-submit="sendFeedback()" novalidate>
                 <div class="form-group"
                      ng-class="{ 'has-error' : feedbackForm.firstname.$error.required && !feedbackForm.firstname.$pristine }">
@@ -53,7 +53,7 @@
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="firstname" name="firstname"
                                placeholder="Enter First Name"
-                               ng-model="feedback.firstName" required>
+                               ng-model="feedback.firstname" required>
                         <span ng-show="feedbackForm.firstname.$error.required && !feedbackForm.firstname.$pristine"
                               class="help-block">Your First name is required.</span>
                     </div>
@@ -64,7 +64,7 @@
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="lastname" name="lastname"
                                placeholder="Enter Last Name"
-                               ng-model="feedback.lastName" required>
+                               ng-model="feedback.lastname" required>
                         <span ng-show="feedbackForm.lastname.$error.required && !feedbackForm.lastname.$pristine"
                               class="help-block">Your Last name is required.</span>
                     </div>
@@ -76,13 +76,13 @@
                             <div class="input-group-addon">(</div>
                             <input type="tel" class="form-control" id="areacode" name="areacode"
                                    placeholder="Area code"
-                                   ng-model="feedback.tel.areaCode">
+                                   ng-model="feedback.areacode">
                             <div class="input-group-addon">)</div>
                         </div>
                     </div>
                     <div class="col-xs-7 col-sm-6 col-md-7">
                         <input type="tel" class="form-control" id="telnum" name="telnum" placeholder="Tel. number"
-                               ng-model="feedback.tel.number">
+                               ng-model="feedback.number">
                     </div>
                 </div>
                 <div class="form-group"
@@ -135,12 +135,6 @@
             </form>
         </div>
         <div class="col-xs-12 col-sm-3">
-            <h3>Your Current Feedback:</h3>
-            <p>{{feedback.firstName}} {{feedback.lastName | uppercase }}</p>
-            <p>Contact Tel.: ({{feedback.tel.areaCode}}) {{feedback.tel.number}}</p>
-            <p>Contact Email: {{feedback.email}}</p>
-            <p ng-show="feedback.agree">Contact by: {{feedback.mychannel}}</p>
-            <p>Comments: {{feedback.comments}}</p>
         </div>
     </div>
 

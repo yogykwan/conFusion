@@ -23,26 +23,22 @@
                 </div>
             </div>
         </div>
-        <div class="col-xs-9 col-xs-offset-1" ng-controller="DishCommentController">
+        <div class="col-xs-9 col-xs-offset-1">
             <h4>Customer Comments
-                &nbsp;&nbsp;&nbsp;&nbsp;
                 <small>Sort by: <input type="text" ng-model="orderText"></small>
             </h4>
-
             <ul>
                 <li class="list-unstyled"
                     ng-repeat="comment in dish.comments | orderBy:orderText">
                     <blockquote>
                         <h4>{{comment.rating}} Stars</h4>
                         <p>{{comment.comment}}</p>
-                        <footer>{{comment.author}}, {{comment.date | date: "MMM, d, y"}}</footer>
                     </blockquote>
                 </li>
                 <li class="list-unstyled" ng-show="!dishCommentForm.$pristine">
                     <blockquote>
                         <h4>{{dishComment.rating}} Stars</h4>
                         <p>{{dishComment.comment}}</p>
-                        <footer>{{dishComment.author}}, {{dishComment.date | date: "MMM, d, y"}}</footer>
                     </blockquote>
                 </li>
             </ul>

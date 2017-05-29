@@ -1,39 +1,54 @@
 'use strict';
 
 angular.module('confusionApp')
-    .constant("baseURL", "http://localhost:3000/")
+    .constant("baseURL", "https://localhost:3443/")
 
-    .service('menuFactory', ['$resource', 'baseURL', function ($resource, baseURL) {
+    .factory('menuFactory', ['$resource', 'baseURL', function ($resource, baseURL) {
+        return $resource(baseURL + "dishes/:id", null, {
+            'update': {
+                method: 'PUT'
+            }
+        });
+    }])
 
+    .factory('commentFactory', ['$resource', 'baseURL', function ($resource, baseURL) {
+        return $resource(baseURL + "dishes/:id/comments/:commentId", {id: "@Id", commentId: "@CommentId"}, {
+            'update': {
+                method: 'PUT'
+            }
+        });
+    }])
 
-        this.getDishes = function () {
-            return $resource(baseURL + "dishes/:id", null, {'update': {method: 'PUT'}});
-        };
-
-        this.getPromotions = function () {
-            return $resource(baseURL + "promotions/:id");
-        };
-
+    .factory('promotionFactory', ['$resource', 'baseURL', function ($resource, baseURL) {
+        return $resource(baseURL + "promotions/:id", null, {
+            'update': {
+                method: 'PUT'
+            }
+        });
     }])
 
     .factory('corporateFactory', ['$resource', 'baseURL', function ($resource, baseURL) {
-
-        var corpfac = {};
-
-        corpfac.getLeaders = function () {
-            return $resource(baseURL + "leadership/:id");
-        };
-
-        return corpfac;
-
+        return $resource(baseURL + "leadership/:id", null, {
+            'update': {
+                method: 'PUT'
+            }
+        });
     }])
 
-    .service('feedbackFactory', ['$resource', 'baseURL', function ($resource, baseURL) {
-
-        this.getFeedback = function () {
-            return $resource(baseURL + "feedback/:id");
-        };
-
+    .factory('feedbackFactory', ['$resource', 'baseURL', function ($resource, baseURL) {
+        return $resource(baseURL + "feedback/:id", null, {
+            'update': {
+                method: 'PUT'
+            }
+        });
     }])
 
+    .factory('favoriteFactory', ['$resource', 'baseURL', function ($resource, baseURL) {
+        return $resource(baseURL + "favorites/:id", null, {
+            'update': {
+                method: 'PUT'
+            },
+            'query': {method: 'GET', isArray: false}
+        });
+    }])
 ;

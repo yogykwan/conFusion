@@ -12,7 +12,7 @@ angular.module('confusionApp', ['ui.router', 'ngResource'])
                         templateUrl: 'views/header.html'
                     },
                     'content': {
-                        templateUrl : 'views/home.html',
+                        templateUrl: 'views/home.html',
                         controller: 'IndexController'
                     },
                     'footer': {
@@ -25,8 +25,8 @@ angular.module('confusionApp', ['ui.router', 'ngResource'])
                 url: 'aboutus',
                 views: {
                     'content@': {
-                        templateUrl : 'views/aboutus.html',
-                        controller  : 'AboutController'
+                        templateUrl: 'views/aboutus.html',
+                        controller: 'AboutController'
                     }
                 }
             })
@@ -61,7 +61,19 @@ angular.module('confusionApp', ['ui.router', 'ngResource'])
                         controller: 'DishDetailController'
                     }
                 }
+            })
+
+            // route for the favorite page
+            .state('app.favorites', {
+                url: 'favorites',
+                views: {
+                    'content@': {
+                        templateUrl: 'views/favorites.html',
+                        controller: 'FavoriteController'
+                    }
+                }
             });
+
         $urlRouterProvider.otherwise('/');
     })
 

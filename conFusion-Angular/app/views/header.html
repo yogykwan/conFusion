@@ -11,17 +11,19 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a ui-sref="app">
+                <li ng-class="{active: stateis('app')}"><a ui-sref="app">
                         <span class="glyphicon glyphicon-home"
                               aria-hidden="true"></span> Home</a></li>
-                <li><a ui-sref="app.aboutus">
+                <li ng-class="{active: stateis('app.aboutus')}"><a ui-sref="app.aboutus">
                         <span class="glyphicon glyphicon-info-sign"
                               aria-hidden="true"></span> About</a></li>
-                <li><a ui-sref="app.menu">
+                <li ng-class="{active: stateis('app.menu')}"><a ui-sref="app.menu">
                          <span class="glyphicon glyphicon-list-alt"
                                aria-hidden="true"></span>
                     Menu</a></li>
-                <li><a ui-sref="app.contactus">
+                <li ng-class="{active: stateis('app.favorites')}"><a ui-sref="app.favorites">
+                    <i class="fa fa-heart-o"></i> Favorites</a></li>
+                <li ng-class="{active: stateis('app.contactus')}"><a ui-sref="app.contactus">
                     <i class="fa fa-envelope-o"></i> Contact</a></li>
             </ul>
         </div>

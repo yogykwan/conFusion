@@ -1,27 +1,28 @@
-<div class="container">
+<div class="container" ng-controller="FavoriteController">
     <div class="row">
         <div class="col-xs-12">
-            <ol class="breadcrumb">
+            <ul class="breadcrumb">
                 <li><a ui-sref="app">Home</a></li>
-                <li class="active">Menu</li>
-            </ol>
+                <li class="active">Favorites</li>
+            </ul>
         </div>
         <div class="col-xs-12">
-            <h3>Menu</h3>
+            <h3>My Favorites</h3>
             <hr>
         </div>
     </div>
-    <div class="row row-content" ng-controller="MenuController">
+    <div class="row row-content">
         <div class="col-xs-12" ng-if="!showMenu">
             <h3>{{message}}</h3>
         </div>
         <div class="col-xs-12" ng-if="showMenu">
-            <button ng-click="toggleDetails()" class="btn btn-xs btn-primary pull-right" type="button">
+            <button ng-click="toggleDetails()" class="btn btn-xs btn-primary pull-right"
+                    type="button">
                 {{showDetails ? 'Hide Details':'Show Details'}}
             </button>
-            <button ng-click="toggleFavorites()" class="btn btn-xs btn-primary pull-right"
+            <button ng-click="toggleDelete()" class="btn btn-xs btn-primary pull-right"
                     type="button">
-                {{showFavorites ? 'Hide Favorite Button':'Show Favorite Button'}}
+                {{showDelete ? 'Hide Delete Button':'Show Delete Button'}}
             </button>
             <ul class="nav nav-tabs" role="tablist">
                 <li role="presentation"
@@ -56,14 +57,13 @@
                         </div>
                         <div class="media-body">
                             <h2 class="media-heading">{{dish.name}}
-                                <span class="label label-danger">{{dish.label}}</span>
-                                <span class="badge">{{dish.price | currency}}</span></h2>
+                                <span class="label label-danger label-xs">{{dish.label}}</span>
+                                <span class="badge">{{dish.price/100 | currency}}</span></h2>
                             <p ng-show="showDetails">{{dish.description}}</p>
-
-                            <button ng-show="showFavorites" ng-click="addToFavorites(dish._id)"
-                                    class="btn btn-xs btn-default pull-right"
+                            <button ng-show="showDelete" ng-click="deleteFavorite(dish._id)"
+                                    class="btn btn-xs btn-danger pull-right"
                                     type="button">
-                                <i class="fa fa-heart"></i>
+                                <i class="fa fa-remove"></i>
                             </button>
                         </div>
                     </li>
