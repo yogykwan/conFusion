@@ -35,25 +35,14 @@
                         <p>{{comment.comment}}</p>
                     </blockquote>
                 </li>
-                <li class="list-unstyled" ng-show="!dishCommentForm.$pristine">
+                <li class="list-unstyled" ng-show="!dishCommentForm.$pristine && loggedIn">
                     <blockquote>
                         <h4>{{dishComment.rating}} Stars</h4>
                         <p>{{dishComment.comment}}</p>
                     </blockquote>
                 </li>
             </ul>
-            <form class="form-horizontal" role="form" name="dishCommentForm" ng-submit="submitComment()" novalidate>
-                <div class="form-group"
-                     ng-class="{ 'has-error' : dishCommentForm.author.$error.required && !dishCommentForm.author.$pristine}">
-                    <label for="author" class="col-sm-2 control-label">Your Name</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="author" name="author"
-                               placeholder="Enter Your Name"
-                               ng-model="dishComment.author" required>
-                        <span ng-show="dishCommentForm.author.$error.required && !dishCommentForm.author.$pristine"
-                              class="help-block">Your name is required.</span>
-                    </div>
-                </div>
+            <form class="form-horizontal" role="form" name="dishCommentForm" ng-submit="submitComment()" novalidate ng-show="loggedIn">
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Number of Stars</label>
                     <div class="col-sm-10">
@@ -75,7 +64,7 @@
                         </div>
                         <div class="radio-inline">
                             <label><input type="radio" name="rating" value="5"
-                                          ng-model="dishComment.rating" ng-checked="1">5</label>
+                                          ng-model="dishComment.rating" ng-checked="true">5</label>
                         </div>
                     </div>
                 </div>

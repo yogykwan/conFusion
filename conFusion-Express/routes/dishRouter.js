@@ -18,7 +18,7 @@ dishRouter.route('/')
             });
     })
 
-    .post(Verify.verifyOrdinaryUser, function (req, res, next) {
+    .post(Verify.verifyOrdinaryUser, Verify.verifyAdmin, function (req, res, next) {
         Dishes.create(req.body, function (err, dish) {
             if (err) return next(err);
             console.log('Dish created!');
@@ -79,7 +79,7 @@ dishRouter.route('/:dishId/comments')
     .post(Verify.verifyOrdinaryUser, function (req, res, next) {
         Dishes.findById(req.params.dishId, function (err, dish) {
             if (err) return next(err);
-            req.body.author = req.decoded._doc._id;
+            req.body.author = req.decoded._id;
             dish.comments.push(req.body);
             dish.save(function (err, dish) {
                 if (err) return next(err);

@@ -9,7 +9,7 @@ var favoriteRouter = express.Router();
 favoriteRouter.use(bodyParser.json());
 
 favoriteRouter.route('/')
-    .get(function (req, res, next) {
+    .get(Verify.verifyOrdinaryUser, function (req, res, next) {
         Favorites.findOne({customer: req.decoded._id})
             .populate(['customer', 'dishes'])
             .exec(function (err, favorite) {

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" ng-controller="HeaderController">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
@@ -26,6 +26,19 @@
                 <li ng-class="{active: stateis('app.contactus')}"><a ui-sref="app.contactus">
                     <i class="fa fa-envelope-o"></i> Contact</a></li>
             </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li ng-if="!loggedIn"><a ng-click="openLogin()">
+                    <span class="glyphicon glyphicon-log-in"></span> Login</a>
+                </li>
+                <li ng-if="loggedIn">
+                    <a>{{username}}</a>
+                </li>
+                <li ng-if="loggedIn">
+                    <a ng-click="logOut()">
+                        <span class="glyphicon glyphicon-log-in"></span> Logout</a>
+                </li>
+            </ul>
+
         </div>
     </div>
 </nav>

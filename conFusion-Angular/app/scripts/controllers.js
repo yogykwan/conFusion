@@ -88,11 +88,13 @@ angular.module('confusionApp')
         };
     }])
 
-    .controller('DishDetailController', ['$scope', '$state', '$stateParams', 'menuFactory', 'commentFactory', function ($scope, $state, $stateParams, menuFactory, commentFactory) {
+    .controller('DishDetailController', ['$scope', '$state', '$stateParams', 'menuFactory', 'commentFactory', 'AuthFactory', function ($scope, $state, $stateParams, menuFactory, commentFactory, AuthFactory) {
         $scope.dish = {};
         $scope.orderText = '';
         $scope.showDish = false;
         $scope.message = "Loading ...";
+
+        $scope.loggedIn = AuthFactory.isAuthenticated();
 
         menuFactory.get({
             id: $stateParams.id
@@ -217,6 +219,77 @@ angular.module('confusionApp')
             favoriteFactory.delete({id: dishid});
             $scope.showDelete = !$scope.showDelete;
             $state.go($state.current, {}, {reload: true});
+        };
+    }])
+
+
+    .controller('HeaderController', ['$scope', '$state', '$rootScope', 'ngDialog', 'AuthFactory', function ($scope, $state, $rootScope, ngDialog, AuthFactory) {
+        $scope.loggedIn = false;
+        $scope.username = '';
+
+        if (AuthFactory.isAuthenticated()) {
+            $scope.loggedIn = true;
+            $scope.username = AuthFactory.getUsername();
+        }
+
+        $scope.openLogin = function () {
+            ngDialog.open({
+                template: 'views/login.html',
+                scope: $scope,
+                className: 'ngdialog-theme-default',
+                controller: "LoginController"
+            });
+        };
+
+        $scope.logOut = function () {
+            AuthFactory.logout();
+            $scope.loggedIn = false;
+            $scope.username = '';
+        };
+
+        $rootScope.$on('login:Successful', function () {
+            $scope.loggedIn = AuthFactory.isAuthenticated();
+            $scope.username = AuthFactory.getUsername();
+        });
+
+        $rootScope.$on('registration:Successful', function () {
+            $scope.loggedIn = AuthFactory.isAuthenticated();
+            $scope.username = AuthFactory.getUsername();
+        });
+
+        $scope.stateis = function (curstate) {
+            return $state.is(curstate);
+        };
+    }])
+
+    .controller('LoginController', ['$scope', 'ngDialog', '$localStorage', 'AuthFactory', function ($scope, ngDialog, $localStorage, AuthFactory) {
+        $scope.loginData = $localStorage.getObject('userinfo', '{}');
+
+        $scope.doLogin = function () {
+            if ($scope.rememberMe) {
+                $localStorage.storeObject('userinfo', $scope.loginData);
+            }
+            AuthFactory.login($scope.loginData);
+            ngDialog.close();
+        };
+
+        $scope.openRegister = function () {
+            ngDialog.open({
+                template: 'views/register.html',
+                scope: $scope,
+                className: 'ngdialog-theme-default',
+                controller: "RegisterController"
+            });
+        };
+    }])
+
+    .controller('RegisterController', ['$scope', 'ngDialog', '$localStorage', 'AuthFactory', function ($scope, ngDialog, $localStorage, AuthFactory) {
+        $scope.register = {};
+        $scope.loginData = {};
+
+        $scope.doRegister = function () {
+            AuthFactory.register($scope.registration);
+            ngDialog.close();
         };
     }])
 ;
