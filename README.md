@@ -41,3 +41,9 @@ mongod --dpath=data
 
 # Wiki
 See README.md inside every folder.
+
+# Cookbook
+1. [Front-End Web UI Framework: Bootstrap](http://jennica.space/2017/05/05/fullstack-bootstrap/)
+2. [Front-End Javascript Framework: AngularJS](http://jennica.space/2017/05/13/fullstack-angularjs/)
+3. [Hybrid Mobile Development: Ionic](http://jennica.space/2017/05/20/fullstack-ionic/)
+4. [Server-side Development with NodeJS: Express](http://jennica.space/2017/05/28/fullstack-express/)
